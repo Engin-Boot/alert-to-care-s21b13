@@ -10,7 +10,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
         private readonly CommonFieldValidator _validator = new CommonFieldValidator();
         private readonly VitalFieldsValidator _vitalsValidator = new VitalFieldsValidator();
         private readonly AddressFieldsValidator _addressValidator = new AddressFieldsValidator();
-        public void ValidatePatientRecord(PatientDetails patient)
+        public void ValidatePatientRecord(Patient patient)
         {
            _validator.IsWhitespaceOrEmptyOrNull(patient.PatientId);
            _validator.IsWhitespaceOrEmptyOrNull(patient.PatientName);
@@ -26,7 +26,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
 
         }
 
-        public void ValidateNewPatientId(string patientId, PatientDetails patientRecord, List<PatientDetails> patients)
+        public void ValidateNewPatientId(string patientId, Patient patientRecord, List<Patient> patients)
         {
             CheckIcuPresence(patientRecord.IcuId);
             foreach (var patient in patients)
@@ -40,7 +40,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
             ValidatePatientRecord(patientRecord);
         }
 
-        private static void CheckConsistencyInPatientIdFields(PatientDetails patient)
+        private static void CheckConsistencyInPatientIdFields(Patient patient)
         {
             if (patient.PatientId.ToLower() == patient.Vitals.PatientId.ToLower())
             {
@@ -51,7 +51,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
 
         private static void CheckConsistencyInIcuIdFields(string icuId, string bedId)
         {
-            var database = new Database.Database();
+            var database = new DatabaseManager();
             var beds = database.ReadBedsDatabase();
             foreach (var bed in beds)
             {
@@ -68,7 +68,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
 
         private static void CheckIcuPresence(string icuId)
         {
-            var database = new Database.Database();
+            var database = new DatabaseManager();
             var icuList = database.ReadIcuDatabase();
             foreach (var icu in icuList)
             {

@@ -7,7 +7,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
     public class IcuFieldsValidator
     {
         private readonly CommonFieldValidator _validator = new CommonFieldValidator();
-        public void ValidateIcuRecord(ICUBedDetails icu)
+        public void ValidateIcuRecord(Icu icu)
         {
             _validator.IsWhitespaceOrEmptyOrNull(icu.IcuId);
             _validator.IsWhitespaceOrEmptyOrNull(icu.BedsCount.ToString());
@@ -16,7 +16,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
             
         }
 
-        public void ValidateNewIcuId(string icuId, ICUBedDetails icuRecord, List<ICUBedDetails> icuStore)
+        public void ValidateNewIcuId(string icuId, Icu icuRecord, List<Icu> icuStore)
         {
             
             foreach (var icu in icuStore)
