@@ -56,20 +56,6 @@ namespace AlertToCareAPI.Repositories
             else
                 return "";
         }
-        /*public void SendMail(string body)
-        {
-             var mailMessage = new MailMessage("alerttocare@gmail.com", "alerttocare@gmail.com");
-             mailMessage.Body = body;
-             var smtpClient = new SmtpClient("smtp.gmail.com", 587);
-             smtpClient.UseDefaultCredentials = true;
-             smtpClient.Credentials = new System.Net.NetworkCredential()
-             {
-                 UserName = "alerttocare@gmail.com",
-                 Password = "admin@1234"
-             };
-
-             smtpClient.EnableSsl=true;
-             smtpClient.Send(mailMessage);
-        }*/
+       
     }
 }
