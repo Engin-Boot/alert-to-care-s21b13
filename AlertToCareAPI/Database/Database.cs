@@ -7,8 +7,8 @@ namespace AlertToCareAPI.Database
 {
     public class Database
     {
-        private readonly List<PatientDetails> _patients=new List<PatientDetails>();
-        private readonly List<ICUBedDetails> _icuList= new List<ICUBedDetails>();
+        private readonly List<PatientDetails> _patients = new List<PatientDetails>();
+        private readonly List<ICUBedDetails> _icuList = new List<ICUBedDetails>();
         private readonly List<BedDetails> _beds1 = new List<BedDetails>();
         private readonly List<BedDetails> _beds2 = new List<BedDetails>();
         public Database()
@@ -168,12 +168,12 @@ namespace AlertToCareAPI.Database
 
             _icuList.Add(new ICUBedDetails()
             {
-                IcuId =  "ICU03",
+                IcuId = "ICU03",
                 LayoutId = "LID03",
                 BedsCount = 3,
                 Beds = _beds2
             });
-            
+
             WriteToPatientsDatabase(_patients);
             WriteToIcuDatabase(_icuList);
         }
@@ -210,6 +210,7 @@ namespace AlertToCareAPI.Database
             {
                 var line = reader.ReadLine();
                 var icu = JsonConvert.DeserializeObject<ICUBedDetails>(line);
+
                 icuList.Add(icu);
             }
 
@@ -227,7 +228,7 @@ namespace AlertToCareAPI.Database
                 var patient = JsonConvert.DeserializeObject<PatientDetails>(line);
                 patients.Add(patient);
             }
-            
+
             reader.Dispose();
             return patients;
         }
@@ -236,7 +237,7 @@ namespace AlertToCareAPI.Database
         {
             var patients = ReadPatientDatabase();
             var vitals = new List<VitalsCategory>();
-            foreach(var patient in patients)
+            foreach (var patient in patients)
             {
                 vitals.Add(patient.Vitals);
             }
@@ -256,5 +257,27 @@ namespace AlertToCareAPI.Database
             }
             return beds;
         }
+
+        public string ReadBedStatus(string bedId)
+        {
+            var fs = new FileStream("Beds.json", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            var reader = new StreamReader(fs);
+            while (reader.EndOfStream != true)
+            {
+                var line = reader.ReadLine();
+                var beds = JsonConvert.DeserializeObject<BedDetails>(line);
+                if (beds.BedId == bedId)
+                {
+                    if (beds.Status == true)
+                    {
+                        return "Bed Occupied";
+                    }
+
+                }
+            }
+            return "Bed Free";
+
+        }
+
     }
 }
