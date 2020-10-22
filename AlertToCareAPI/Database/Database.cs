@@ -266,12 +266,12 @@ namespace AlertToCareAPI.Database
             {
                 var line = reader.ReadLine();
                 var beds = JsonConvert.DeserializeObject<BedDetails>(line);
-                if (beds.BedId == bedId)
+                if (beds.BedId == bedId && beds.Status==true)
                 {
-                    if (beds.Status == true)
-                    {
+                    
+                    
                         return "Bed Occupied";
-                    }
+                    
 
                 }
             }
