@@ -1,0 +1,55 @@
+﻿<Window x:Class="AlertToCareAPIUI.PatientDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlertToCareAPIUI"
+        mc:Ignorable="d"
+        Title="PatientDetailsWindow" Height="500" Width="800">
+    <Grid  Height="600" Width="525" Background="Bisque">
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="25,20,0,0" Name="textBlockHeading" Text="Enter Patient Details" VerticalAlignment="Top" Width="140"  FontSize="15" FontStretch="ExtraCondensed" TextAlignment="Center"/>
+        <Grid Margin="31,0,29,23" Background="White" Height="500" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="252*" />
+                <!--   <RowDefinition Height="12*" />-->
+            </Grid.RowDefinitions>
+
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,20,0,0" Name="textBlockPatientId" Text="Patient ID:" VerticalAlignment="Top" Width="110" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,50,0,0" Name="textBlockPatientName" Text="Patient Name:" VerticalAlignment="Top" Width="110" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,80,0,0" Name="textBlockAge" Text="Age:" VerticalAlignment="Top" Width="110" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,107,0,0" Name="textBlockContactNo" Text="Contact No:" VerticalAlignment="Top" Width="110"  />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,136,0,0" Name="textBlockBedId" Text="BedId:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,160,0,0" Name="textBlockIcuId" Text="IcuId:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,180,0,0" Name="textBlockEmail" Text="Email:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,200,0,0" Name="textBlockHouseNo" Text="HouseNo:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,226,0,0" Name="textBlockStreet" Text="Street:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,246,0,0" Name="textBlockCity" Text="City:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,266,0,0" Name="textBlockState" Text="State:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,286,0,0" Name="textBlockPincode" Text="Pincode:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,308,0,0" Name="textBlockSpo2" Text="Spo2:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,328,0,0" Name="textBlockBpm" Text="Bpm:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,350,0,0" Name="textBlockResp" Text="Resp:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,20,0,0" Name="textBoxPatientId" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,50,0,0" Name="textBoxPatientName" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,80,0,0" Name="textBoxAge" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,107,0,0" Name="textBoxContactNo" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,136,0,0" Name="textBoxBedId" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,160,0,0" Name="textBoxIcuId" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,180,0,0" Name="textBoxEmail" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,200,0,0" Name="textBoxHouseNo" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,226,0,0" Name="textBoxStreet" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,246,0,0" Name="textBoxCity" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,266,0,0" Name="textBoxState" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,286,0,0" Name="textBoxPincode" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,308,0,0" Name="textBoxSpo2" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,328,0,0" Name="textBoxBpm" VerticalAlignment="Top" Width="222" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,350,0,0" Name="textBoxResp" VerticalAlignment="Top" Width="222" />
+            
+
+            <Button Content="Submit" Height="23" HorizontalAlignment="Left" Margin="183,390,0,0" Name="Submit" VerticalAlignment="Top" Width="70" Click="AddPatient_Click" />
+            <Button Content="Close" Height="23" HorizontalAlignment="Right" Margin="183,390,40,0" Name="Close" VerticalAlignment="Top" Width="70" Click="Close_Click" />
+
+        </Grid>
+    </Grid>
+</Window>

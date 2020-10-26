@@ -30,7 +30,7 @@ namespace AlertToCareAPI.Controllers
             string vitalCheck="";
             foreach (var patient in patientVitals)
             {   
-              vitalCheck= vitalCheck + patient.PatientId + " " + _patientMonitoring.CheckVitals(patient) + "\n";
+              vitalCheck = vitalCheck + patient.PatientId + " " + _patientMonitoring.CheckVitals(patient) + "\n";
                   
             }
             return Ok(vitalCheck);

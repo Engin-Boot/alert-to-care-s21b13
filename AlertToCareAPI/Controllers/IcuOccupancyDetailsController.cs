@@ -2,7 +2,6 @@
 using AlertToCareAPI.Repositories;
 using AlertToCareAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using AlertToCareAPI.Database;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -54,18 +53,6 @@ namespace AlertToCareAPI.Controllers
             }
         }
 
-        [HttpGet("BedStatus/{bedId}")]    //new addition
-        public IActionResult Get_bed(string bedId)
-        {
-            var bedStatus = _occupantDb.GetBedStatus(bedId);
-            if (bedStatus == "Bed Occupied")
-            {
-                return Ok("Bed Occupied");
-            }
-            else
-                return Ok("Bed Free");
-        }
-
         [HttpPut("Patients/{PatientId}")]
         public IActionResult Put(string patientId, [FromBody] PatientDetails patient)
         {
@@ -80,7 +67,7 @@ namespace AlertToCareAPI.Controllers
             }
         }
 
-        [HttpDelete("Patients/{PatientId}")]
+        [HttpDelete("Remove/Patients/{PatientId}")]
         public IActionResult Delete(string patientId)
         {
             try

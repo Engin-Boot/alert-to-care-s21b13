@@ -67,7 +67,7 @@ namespace AlertToCareAPI.Controllers
             
         }
 
-        [HttpDelete("IcuWards/{IcuId}")]
+        [HttpDelete("Remove/IcuWards/{IcuId}")]
         public IActionResult Delete(string icuId)
         {
             try

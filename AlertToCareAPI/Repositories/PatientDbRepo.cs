@@ -92,10 +92,5 @@ namespace AlertToCareAPI.Repositories
                 }
             }
         }
-
-        public string GetBedStatus(string bedId)
-        {
-            return _creator.ReadBedStatus(bedId);
-        }
     }
 }

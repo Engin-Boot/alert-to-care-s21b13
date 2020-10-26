@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="ICUDetailsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ICURemove.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="InitialScreen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LShapedLayout.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ParallelLayout.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PatientDetailsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PatientRemove.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ICUDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ICURemove.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="InitialScreen.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LShapedLayout.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ParallelLayout.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PatientDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PatientRemove.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

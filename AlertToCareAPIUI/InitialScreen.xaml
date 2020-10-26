@@ -1,0 +1,26 @@
+﻿<Window x:Class="AlertToCareAPIUI.InitialScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlertToCareAPIUI"
+        mc:Ignorable="d"
+        Title="InitialScreen" Height="450" Width="800">
+    <DockPanel LastChildFill="True">
+        <Border x:Name ="BedButtons" BorderThickness="2" BorderBrush="Beige" Height="450" DockPanel.Dock="Left" Background="PapayaWhip" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400">
+            <StackPanel>
+                <TextBlock Margin="30" Background="OldLace" Height="50" TextAlignment="Center" FontSize="30">Add Beds for the Patient</TextBlock>
+                <Button Height="50" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond" Click="Add_Click">Add ICU details</Button>
+                <Button Height="50" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond" Click="Remove_Click">Remove ICU</Button>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name ="LayoutButtons" BorderThickness="2" BorderBrush="Beige" Height="450" DockPanel.Dock="Left" Background="PeachPuff" HorizontalAlignment="Right" VerticalAlignment="Center" Width="400">
+            <StackPanel>
+                <TextBlock Margin="30" Background="OldLace" Height="50" TextAlignment="Center" FontSize="30">Choose the Layout</TextBlock>
+                <Button Height="50" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond" Click="Parallel_Click">Parallel layout</Button>
+                <Button Height="50" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond">L shaped Layout</Button>
+            </StackPanel>
+        </Border>
+    </DockPanel>
+</Window>
