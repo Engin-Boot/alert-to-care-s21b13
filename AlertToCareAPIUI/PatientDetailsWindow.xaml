@@ -25,7 +25,7 @@
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,226,0,0" Name="textBlockStreet" Text="Street:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,246,0,0" Name="textBlockCity" Text="City:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,266,0,0" Name="textBlockState" Text="State:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,286,0,0" Name="textBlockPincode" Text="Pincode:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,286,0,0" Name="TextBlockPincode" Text="Pincode:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,308,0,0" Name="textBlockSpo2" Text="Spo2:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,328,0,0" Name="textBlockBpm" Text="Bpm:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="67,350,0,0" Name="textBlockResp" Text="Resp:" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" />

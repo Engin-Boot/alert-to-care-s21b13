@@ -11,10 +11,10 @@ namespace AlertToCareAPI.Controllers
     [ApiController]
     public class IcuDetailsController : ControllerBase
     {
-        readonly IIcuConfigurationRepo _configurationRepository;
+        private readonly IIcuConfigurationRepo _configurationRepository;
         public IcuDetailsController(IIcuConfigurationRepo repo)
         {
-            this._configurationRepository = repo;
+            _configurationRepository = repo;
         }
         // GET: api/<IcuConfigurationController>
         [HttpGet("IcuWards")]

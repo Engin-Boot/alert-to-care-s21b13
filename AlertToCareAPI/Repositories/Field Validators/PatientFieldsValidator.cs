@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AlertToCareAPI.Database;
+using System.Linq;
 using AlertToCareAPI.Models;
 
 namespace AlertToCareAPI.Repositories.Field_Validators
@@ -29,12 +29,9 @@ namespace AlertToCareAPI.Repositories.Field_Validators
         public void ValidateNewPatientId(string patientId, PatientDetails patientRecord, List<PatientDetails> patients)
         {
             CheckIcuPresence(patientRecord.IcuId);
-            foreach (var patient in patients)
+            if (patients.Any(patient => patient.PatientId == patientId))
             {
-                if (patient.PatientId == patientId)
-                {
-                    throw new Exception("Invalid Patient Id");
-                }
+                throw new Exception("Invalid Patient Id");
             }
 
             ValidatePatientRecord(patientRecord);
@@ -42,7 +39,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
 
         private static void CheckConsistencyInPatientIdFields(PatientDetails patient)
         {
-            if (patient.PatientId.ToLower() == patient.Vitals.PatientId.ToLower())
+            if (string.Equals(patient.PatientId, patient.Vitals.PatientId, StringComparison.CurrentCultureIgnoreCase))
             {
                return;
             }
@@ -53,15 +50,9 @@ namespace AlertToCareAPI.Repositories.Field_Validators
         {
             var database = new Database.Database();
             var beds = database.ReadBedsDatabase();
-            foreach (var bed in beds)
+            if (beds.Where(bed => bed.BedId == bedId).Any(bed => bed.IcuId == icuId))
             {
-                if (bed.BedId == bedId)
-                {
-                    if (bed.IcuId == icuId)
-                    {
-                        return;
-                    }
-                }
+                return;
             }
             throw new Exception("Invalid data field");
         }
@@ -70,12 +61,9 @@ namespace AlertToCareAPI.Repositories.Field_Validators
         {
             var database = new Database.Database();
             var icuList = database.ReadIcuDatabase();
-            foreach (var icu in icuList)
+            if (icuList.Any(icu => icu.IcuId == icuId))
             {
-                if (icu.IcuId == icuId)
-                {
-                    return;
-                }
+                return;
             }
 
             throw new Exception("Invalid data field");

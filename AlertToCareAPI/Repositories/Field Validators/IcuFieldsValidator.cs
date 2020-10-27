@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AlertToCareAPI.Models;
 
 namespace AlertToCareAPI.Repositories.Field_Validators
@@ -18,13 +19,9 @@ namespace AlertToCareAPI.Repositories.Field_Validators
 
         public void ValidateNewIcuId(string icuId, ICUBedDetails icuRecord, List<ICUBedDetails> icuStore)
         {
-            
-            foreach (var icu in icuStore)
+            if (icuStore.Any(icu => icu.IcuId == icuId))
             {
-                if (icu.IcuId == icuId)
-                {
-                    throw new Exception("Invalid Patient Id");
-                }
+                throw new Exception("Invalid Patient Id");
             }
 
             ValidateIcuRecord(icuRecord);

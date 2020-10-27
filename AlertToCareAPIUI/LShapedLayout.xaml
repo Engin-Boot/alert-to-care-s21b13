@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:AlertToCareAPIUI"
         mc:Ignorable="d"
         Title="LShapedLayout" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel LastChildFill="True">
+        <Border x:Name ="PatientButtons" BorderThickness="2" BorderBrush="Beige" Height="450" DockPanel.Dock="Left" Background="Beige" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200">
+            <StackPanel>
+                <Button Height="30" Width="130" Margin="30" VerticalAlignment="Top" BorderBrush="BlanchedAlmond" Click="AddPatient_Click">Add Patient</Button>
+                <Button Height="30" Width="130" Margin="30" VerticalAlignment="Top" BorderBrush="BlanchedAlmond" Click="RemovePatient_Click">Remove Patient</Button>
+                <Button Height="30" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond" Click="GetBeds_Click">Get All Beds</Button>
+                <Button Height="30" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond" Click="GetAlert_Click">Get Alert</Button>
+                <Button Height="30" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond" Click="UndoAlert_Click">Undo Alert</Button>
+            </StackPanel>
+        </Border>
+        <Grid>
+            <Canvas x:Name="canvas" Margin="50,20,0,0"></Canvas>
+        </Grid>
+    </DockPanel>
 </Window>

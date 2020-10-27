@@ -11,10 +11,10 @@ namespace AlertToCareAPI.Controllers
     [ApiController]
     public class IcuOccupancyDetailsController : ControllerBase
     {
-        readonly IPatientDbRepos _occupantDb;
+        private readonly IPatientDbRepos _occupantDb;
         public IcuOccupancyDetailsController(IPatientDbRepos repo)
         {
-            this._occupantDb = repo;
+            _occupantDb = repo;
         }
 
         [HttpGet("Patients")]

@@ -1,25 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace AlertToCareAPIUI
 {
     /// <summary>
     /// Interaction logic for InitialScreen.xaml
     /// </summary>
-    public partial class InitialScreen : Window
+    public partial class InitialScreen
     {
         public InitialScreen()
         {
             InitializeComponent();
+            var newProcess = new Process
+            {
+                StartInfo =
+                {
+                    UseShellExecute = false,
+                    FileName = System.IO.Directory
+                        .GetParent(System.IO.Directory.GetParent(
+                            System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString())
+                         + @"\AlertToCareAPI\bin\Debug\netcoreapp3.1\AlertToCareAPI.exe"
+                }
+
+        
+            };
+            newProcess.Start();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -39,5 +46,12 @@ namespace AlertToCareAPIUI
             var newWind = new ParallelLayout();
             newWind.Show();
         }
+
+        private void LShaped_Click(object sender, RoutedEventArgs e)
+        {
+            var newWind = new LShapedLayout();
+            newWind.Show();
+        }
+        
     }
 }

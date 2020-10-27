@@ -1,8 +1,5 @@
 
 
-using System;
-using System.Collections.Generic;
-
 namespace AlertToCareAPI.Models
 {
     public class VitalsCategory

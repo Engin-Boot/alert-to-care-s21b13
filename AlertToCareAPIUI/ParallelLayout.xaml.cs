@@ -1,20 +1,11 @@
-﻿using AlertToCareAPI.Database;
-using AlertToCareAPI.Models;
-using System;
+﻿using AlertToCareAPI.Models;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Http;
-using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
-using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace AlertToCareAPIUI
@@ -23,7 +14,7 @@ namespace AlertToCareAPIUI
     /// Interaction logic for ParallelLayout.xaml
     /// </summary>
     ///
-    public partial class ParallelLayout : Window
+    public partial class ParallelLayout
     {
         public ParallelLayout()
         {
@@ -33,31 +24,24 @@ namespace AlertToCareAPIUI
         public List<BedDetails> FindBeds(string responseBody)
         {
             
-            var myICUBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
+            var myIcuBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
 
 
-            var myBedDetails = myICUBedDetailsList.Beds;
+            var myBedDetails = myIcuBedDetailsList.Beds;
 
-            var result = new List<BedDetails>();
-
-                foreach (var bed in myBedDetails)
-                {
-                    result.Add(bed);
-                }
-            
-            return result;
+            return myBedDetails.ToList();
         }
 
         public async System.Threading.Tasks.Task GetBeds_ClickAsync(object sender, RoutedEventArgs e)
         {
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("http://localhost:5000/api/IcuDetails/IcuWards/ICU01");
+            var client = new HttpClient();
+            var response = await client.GetAsync("http://localhost:5000/api/IcuDetails/IcuWards/ICU01");
             //response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            var myICUBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
+            var myIcuBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
 
-            int bedValue = myICUBedDetailsList.BedsCount;
+            var bedValue = myIcuBedDetailsList.BedsCount;
 
             MakeRectangle(bedValue,responseBody);
 
@@ -67,29 +51,29 @@ namespace AlertToCareAPIUI
         {
             var myBeds = FindBeds(responseBody);
           
-            int width = 75;
-            int height = 75;
-            int top = 20;
-            int left = 20;
-            int tbTop = 100;
+            const int width = 75;
+            const int height = 75;
+            var top = 20;
+            var left = 20;
+            var tbTop = 100;
 
-            for (int i = 0; i < bedValue/2; i++)
+            for (var i = 0; i < bedValue/2; i++)
             {
-                Rectangle rec = new Rectangle()
+                var rec = new Rectangle
                 {
                     Width = width,
                     Height = height,
                     Fill = Brushes.AliceBlue,
                     Stroke = Brushes.LightPink,
-                    StrokeThickness = 2,
+                    StrokeThickness = 2
                     
                 };
 
-                TextBlock tb = new TextBlock()
+                var tb = new TextBlock
                 {
                     Width = 75,
                     Height = 80,
-                    Text = myBeds[i].Status.ToString() +" "+ myBeds[i].BedId,
+                    Text = myBeds[i].Status.ToString() +" "+ myBeds[i].BedId
                     
                 };
 
@@ -100,29 +84,29 @@ namespace AlertToCareAPIUI
                 Canvas.SetLeft(tb, left);
                 Canvas.SetTop(rec, top);
                 Canvas.SetLeft(rec, left);
-                left = left + 100;
+                left += 100;
             }
-            top = top + 150;
-            tbTop = tbTop + 150;
+            top += 150;
+            tbTop += 150;
             left = 20;
 
-            for (int i = bedValue/2; i < bedValue; i++)
+            for (var i = bedValue/2; i < bedValue; i++)
             {
                 // Create the rectangle
-                Rectangle rec = new Rectangle()
+                var rec = new Rectangle
                 {
                     Width = width,
                     Height = height,
                     Fill = Brushes.AliceBlue,
                     Stroke = Brushes.LightPink,
-                    StrokeThickness = 2,
+                    StrokeThickness = 2
                 };
 
-                TextBlock tb = new TextBlock()
+                var tb = new TextBlock
                 {
                     Width = 75,
                     Height = 80,
-                    Text = myBeds[i].Status.ToString() + " " + myBeds[i].BedId,
+                    Text = myBeds[i].Status.ToString() + " " + myBeds[i].BedId
 
                 };
 
@@ -133,7 +117,7 @@ namespace AlertToCareAPIUI
                 Canvas.SetLeft(tb, left);
                 Canvas.SetTop(rec, top);
                 Canvas.SetLeft(rec, left);
-                left = left + 100;
+                left += 100;
             }
            
 
@@ -141,27 +125,27 @@ namespace AlertToCareAPIUI
 
         private void GetBeds_Click(object sender, RoutedEventArgs e)
         {
-            var result = GetBeds_ClickAsync(sender, e);
+            _ = GetBeds_ClickAsync(sender, e);
 
         }
 
         public async System.Threading.Tasks.Task GetAlert_ClickAsync(object sender, RoutedEventArgs e)
         {
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("http://localhost:5000/api/PatientMonitoring");
+            var client = new HttpClient();
+            var response = await client.GetAsync("http://localhost:5000/api/PatientMonitoring");
             //response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             
             MessageBox.Show(responseBody);
         }
 
         private void GetAlert_Click(object sender, RoutedEventArgs e)
         {
-            var result = GetAlert_ClickAsync(sender, e);
+            _ = GetAlert_ClickAsync(sender, e);
         }
         private void UndoAlert_Click(object sender, RoutedEventArgs e)
         {
-            var result = GetAlert_ClickAsync(sender, e);
+            _ = GetAlert_ClickAsync(sender, e);
         }
 
         private void AddPatient_Click(object sender, RoutedEventArgs e)

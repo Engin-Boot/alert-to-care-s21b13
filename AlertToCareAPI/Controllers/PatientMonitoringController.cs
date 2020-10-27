@@ -1,4 +1,5 @@
 ﻿
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using AlertToCareAPI.Repositories;
 
@@ -9,10 +10,10 @@ namespace AlertToCareAPI.Controllers
     [ApiController]
     public class PatientMonitoringController : ControllerBase
     {
-        readonly IMonitoringRepo _patientMonitoring;
+        private readonly IMonitoringRepo _patientMonitoring;
         public PatientMonitoringController(IMonitoringRepo patientMonitoring)
         {
-            this._patientMonitoring = patientMonitoring;
+            _patientMonitoring = patientMonitoring;
         }
         // GET: api/<PatientMonitoringController>
        /* [HttpGet]
@@ -27,12 +28,7 @@ namespace AlertToCareAPI.Controllers
         {
             
             var patientVitals = _patientMonitoring.GetAllVitals();
-            string vitalCheck="";
-            foreach (var patient in patientVitals)
-            {   
-              vitalCheck = vitalCheck + patient.PatientId + " " + _patientMonitoring.CheckVitals(patient) + "\n";
-                  
-            }
+            var vitalCheck= patientVitals.Aggregate("", (current, patient) => current + patient.PatientId + " " + _patientMonitoring.CheckVitals(patient) + "\n");
             return Ok(vitalCheck);
         }
 

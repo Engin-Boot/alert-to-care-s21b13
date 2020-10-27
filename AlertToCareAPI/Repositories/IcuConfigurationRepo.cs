@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AlertToCareAPI.Database;
 using AlertToCareAPI.Models;
 using AlertToCareAPI.Repositories.Field_Validators;
 
@@ -24,12 +23,10 @@ namespace AlertToCareAPI.Repositories
             var icuList = _creator.ReadIcuDatabase();
             for (var i = 0; i < icuList.Count; i++)
             {
-                if (icuList[i].IcuId == icuId)
-                {
-                    icuList.Remove(icuList[i]);
-                    _creator.WriteToIcuDatabase(icuList);
-                    return;
-                }
+                if (icuList[i].IcuId != icuId) continue;
+                icuList.Remove(icuList[i]);
+                _creator.WriteToIcuDatabase(icuList);
+                return;
             }
             throw new Exception("Invalid data field");
         }
@@ -40,12 +37,10 @@ namespace AlertToCareAPI.Repositories
             
             for (var i = 0; i < icuList.Count; i++)
             {
-                if (icuList[i].IcuId == icuId)
-                {
-                    icuList.Insert(i, state);
-                    _creator.WriteToIcuDatabase(icuList);
-                    return;
-                }
+                if (icuList[i].IcuId != icuId) continue;
+                icuList.Insert(i, state);
+                _creator.WriteToIcuDatabase(icuList);
+                return;
             }
             throw new Exception("Invalid data field");
         }

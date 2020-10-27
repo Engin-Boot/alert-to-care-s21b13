@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlertToCareAPI", "AlertToCareAPI\AlertToCareAPI.csproj", "{27D5B992-C188-403C-8766-A0DD02300476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertToCareAPIUI", "AlertToCareAPIUI\AlertToCareAPIUI.csproj", "{E422F20D-C354-4AE3-862F-AA8BE29BE6A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlertToCareAPIUI", "AlertToCareAPIUI\AlertToCareAPIUI.csproj", "{E422F20D-C354-4AE3-862F-AA8BE29BE6A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertToCareAPI.Test", "AlertToCareAPI.Test\AlertToCareAPI.Test.csproj", "{28EA912B-D90F-4119-B2B1-B6668B3D85CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E422F20D-C354-4AE3-862F-AA8BE29BE6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E422F20D-C354-4AE3-862F-AA8BE29BE6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E422F20D-C354-4AE3-862F-AA8BE29BE6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28EA912B-D90F-4119-B2B1-B6668B3D85CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28EA912B-D90F-4119-B2B1-B6668B3D85CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28EA912B-D90F-4119-B2B1-B6668B3D85CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28EA912B-D90F-4119-B2B1-B6668B3D85CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

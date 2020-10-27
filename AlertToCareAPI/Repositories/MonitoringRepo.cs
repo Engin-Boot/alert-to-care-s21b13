@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using AlertToCareAPI.Models;
-using AlertToCareAPI.Database;
 
 namespace AlertToCareAPI.Repositories
 {
@@ -10,7 +9,7 @@ namespace AlertToCareAPI.Repositories
         private readonly List<VitalsCategory> _vitals;
         public MonitoringRepo()
         {
-            this._vitals = _creator.ReadVitalsDatabase();
+            _vitals = _creator.ReadVitalsDatabase();
         }
       
         public IEnumerable<VitalsCategory> GetAllVitals()
@@ -28,48 +27,20 @@ namespace AlertToCareAPI.Repositories
            }
         private static string CheckSpo2(float spo2)
         {
-            if (spo2 < 90)
-            {
-               
-                return "Spo2 is low, ";
-              
-            }
-            else
-                return "";
-
+            return spo2 < 90 ? "Spo2 is low, " : "";
         }
         private static string CheckBpm(float bpm)
         {
             if (bpm < 70)
                 return "bpm is low, ";
-            if (bpm > 150)
-                return "bpm is high, ";
-            else
-                return "";
+            return bpm > 150 ? "bpm is high, " : "";
         }
         private static string CheckRespRate(float respRate)
         {
             if (respRate < 30)
                 return "respRate is low. ";
-            if (respRate > 95)
-                return "respRate is high. ";
-            else
-                return "";
+            return respRate > 95 ? "respRate is high. " : "";
         }
-        /*public void SendMail(string body)
-        {
-             var mailMessage = new MailMessage("alerttocare@gmail.com", "alerttocare@gmail.com");
-             mailMessage.Body = body;
-             var smtpClient = new SmtpClient("smtp.gmail.com", 587);
-             smtpClient.UseDefaultCredentials = true;
-             smtpClient.Credentials = new System.Net.NetworkCredential()
-             {
-                 UserName = "alerttocare@gmail.com",
-                 Password = "admin@1234"
-             };
-
-             smtpClient.EnableSsl=true;
-             smtpClient.Send(mailMessage);
-        }*/
+        
     }
 }

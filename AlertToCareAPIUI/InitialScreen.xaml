@@ -19,7 +19,7 @@
             <StackPanel>
                 <TextBlock Margin="30" Background="OldLace" Height="50" TextAlignment="Center" FontSize="30">Choose the Layout</TextBlock>
                 <Button Height="50" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond" Click="Parallel_Click">Parallel layout</Button>
-                <Button Height="50" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond">L shaped Layout</Button>
+                <Button Height="50" Width="130" Margin="30" VerticalAlignment="Bottom" BorderBrush="BlanchedAlmond" Click="LShaped_Click" >L shaped Layout</Button>
             </StackPanel>
         </Border>
     </DockPanel>

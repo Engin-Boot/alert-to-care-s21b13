@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Net.Http;
-using AlertToCareAPI;
 using AlertToCareAPI.Models;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace AlertToCareAPIUI
@@ -20,34 +10,36 @@ namespace AlertToCareAPIUI
     /// <summary>
     /// Interaction logic for ICUDetailsWindow.xaml
     /// </summary>
-    public partial class ICUDetailsWindow : Window
+    public partial class ICUDetailsWindow
     {
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient Client = new HttpClient();
         public ICUDetailsWindow()
         {
             InitializeComponent();
         }
-        private async System.Threading.Tasks.Task AddIcuDetails_ClickAsync(object sender, RoutedEventArgs e)
+        private async System.Threading.Tasks.Task AddIcuDetails_ClickAsync()
         {
             var newBedDetails = new BedDetails
             {
                 BedId = textBoxBedId.Text,
                 IcuId = textBoxIcuId.Text,
-                Status = bool.Parse(textBoxStatus.Text),
+                Status = bool.Parse(textBoxStatus.Text)
             };
 
-            List<BedDetails> bedDetailsList = new List<BedDetails>();
-            bedDetailsList.Add(newBedDetails);
+            var bedDetailsList = new List<BedDetails>
+            {
+                newBedDetails
+            };
 
             var newIcuDetails = new ICUBedDetails
             {
                 IcuId = textBoxIcuId.Text,
                 LayoutId = textBoxLayoutId.Text,
                 BedsCount = int.Parse(textBoxBedsCount.Text),
-                Beds = bedDetailsList,
+                Beds = bedDetailsList
             };
 
-            var response = await client.PostAsync("http://localhost:5000/api/IcuDetails/IcuWards", new StringContent(JsonConvert.SerializeObject(newIcuDetails), Encoding.UTF8, "application/json"));
+            var response = await Client.PostAsync("http://localhost:5000/api/IcuDetails/IcuWards", new StringContent(JsonConvert.SerializeObject(newIcuDetails), Encoding.UTF8, "application/json"));
 
             var responseString = await response.Content.ReadAsStringAsync();
 
@@ -57,12 +49,12 @@ namespace AlertToCareAPIUI
 
         private void AddIcuDetails_Click(object sender, RoutedEventArgs e)
         {
-            var result = AddIcuDetails_ClickAsync(sender, e);
+            _ = AddIcuDetails_ClickAsync();
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

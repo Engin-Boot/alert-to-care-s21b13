@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AlertToCareAPI.Models;
-using AlertToCareAPI.Database;
 using AlertToCareAPI.Repositories.Field_Validators;
 
 namespace AlertToCareAPI.Repositories
@@ -24,13 +24,11 @@ namespace AlertToCareAPI.Repositories
             var patients = _creator.ReadPatientDatabase();
             for (var i = 0; i < patients.Count; i++)
             {
-                if (patients[i].PatientId == patientId)
-                {
-                    patients.Remove(patients[i]);
-                    _creator.WriteToPatientsDatabase(patients);
-                    ChangeBedStatusToFalse(patients[i].BedId);
-                    return;
-                }
+                if (patients[i].PatientId != patientId) continue;
+                patients.Remove(patients[i]);
+                _creator.WriteToPatientsDatabase(patients);
+                ChangeBedStatusToFalse(patients[i].BedId);
+                return;
             }
             throw new Exception("Invalid data field");
         }
@@ -41,12 +39,10 @@ namespace AlertToCareAPI.Repositories
 
             for (var i = 0; i < patients.Count; i++)
             {
-                if (patients[i].PatientId == patientId)
-                {
-                    patients.Insert(i, state);
-                    _creator.WriteToPatientsDatabase(patients);
-                    return;
-                }
+                if (patients[i].PatientId != patientId) continue;
+                patients.Insert(i, state);
+                _creator.WriteToPatientsDatabase(patients);
+                return;
             }
             throw new Exception("Invalid data field");
         }
@@ -58,20 +54,11 @@ namespace AlertToCareAPI.Repositories
         private void ChangeBedStatusToTrue(string bedId)
         {
             var icuList = _creator.ReadIcuDatabase();
-            foreach (var icu in icuList)
+            foreach (var bed in from icu in icuList from bed in icu.Beds where bed.BedId == bedId where bed.Status == false select bed)
             {
-                foreach (var bed in icu.Beds)
-                {
-                    if (bed.BedId == bedId)
-                    {
-                        if (bed.Status == false)
-                        {
-                            bed.Status = true;
-                            _creator.WriteToIcuDatabase(icuList);
-                            return;
-                        }
-                    }
-                }
+                bed.Status = true;
+                _creator.WriteToIcuDatabase(icuList);
+                return;
             }
             throw new Exception("Invalid data field");
         }
@@ -79,17 +66,10 @@ namespace AlertToCareAPI.Repositories
         private void ChangeBedStatusToFalse(string bedId)
         {
             var icuList = _creator.ReadIcuDatabase();
-            foreach (var icu in icuList)
+            foreach (var bed in from icu in icuList from bed in icu.Beds where bed.BedId == bedId select bed)
             {
-                foreach (var bed in icu.Beds)
-                {
-                    if (bed.BedId == bedId)
-                    {
-                        bed.Status = false;
-                        _creator.WriteToIcuDatabase(icuList);
-                        
-                    }
-                }
+                bed.Status = false;
+                _creator.WriteToIcuDatabase(icuList);
             }
         }
     }

@@ -1,38 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using System.Net.Http;
-using AlertToCareAPI;
-using AlertToCareAPI.Models;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
+
 
 namespace AlertToCareAPIUI
 {
     /// <summary>
     /// Interaction logic for PatientRemove.xaml
     /// </summary>
-    public partial class PatientRemove : Window
+    public partial class PatientRemove
     {
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient Client = new HttpClient();
         public PatientRemove()
         {
             InitializeComponent();
         }
 
-        private async System.Threading.Tasks.Task Remove_ClickAsync(object sender, RoutedEventArgs e)
+        private async System.Threading.Tasks.Task Remove_ClickAsync()
         {
-            var PatientId = textBoxPatientId.Text;
+            var patientId = textBoxPatientId.Text;
 
-            var response = await client.DeleteAsync("http://localhost:5000/api/IcuOccupancyDetails/Remove/Patients/" + PatientId);
+            var response = await Client.DeleteAsync("http://localhost:5000/api/IcuOccupancyDetails/Remove/Patients/" + patientId);
 
             var responseString = await response.Content.ReadAsStringAsync();
 
@@ -41,13 +28,13 @@ namespace AlertToCareAPIUI
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            var result = Remove_ClickAsync(sender, e);
+            _ = Remove_ClickAsync();
 
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

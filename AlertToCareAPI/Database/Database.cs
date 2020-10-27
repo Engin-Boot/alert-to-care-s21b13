@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AlertToCareAPI.Models;
 using Newtonsoft.Json;
 
@@ -14,7 +15,7 @@ namespace AlertToCareAPI.Database
         public Database()
         {
 
-            var patient1 = new PatientDetails()
+            var patient1 = new PatientDetails
             {
 
                 PatientId = "PID001",
@@ -24,7 +25,7 @@ namespace AlertToCareAPI.Database
                 BedId = "BID1",
                 IcuId = "ICU01",
                 Email = "deepakkr.mnnit@gmail.com",
-                Address = new PatientAddress()
+                Address = new PatientAddress
                 {
                     HouseNo = "32",
                     Street = "Adarsh Colony",
@@ -32,7 +33,7 @@ namespace AlertToCareAPI.Database
                     State = "Bihar",
                     Pincode = "821115"
                 },
-                Vitals = new VitalsCategory()
+                Vitals = new VitalsCategory
                 {
                     PatientId = "PID001",
                     Spo2 = 99,
@@ -41,7 +42,7 @@ namespace AlertToCareAPI.Database
                 }
             };
             _patients.Add(patient1);
-            var patient2 = new PatientDetails()
+            var patient2 = new PatientDetails
             {
                 PatientId = "PID002",
                 PatientName = "Varshitha",
@@ -50,7 +51,7 @@ namespace AlertToCareAPI.Database
                 BedId = "BID2",
                 IcuId = "ICU01",
                 Email = "varshitha.CS@philips.com",
-                Address = new PatientAddress()
+                Address = new PatientAddress
                 {
                     HouseNo = "10",
                     Street = "karnataka",
@@ -58,7 +59,7 @@ namespace AlertToCareAPI.Database
                     State = "karnataka",
                     Pincode = "100000"
                 },
-                Vitals = new VitalsCategory()
+                Vitals = new VitalsCategory
                 {
                     PatientId = "PID002",
                     Spo2 = 57,
@@ -68,7 +69,7 @@ namespace AlertToCareAPI.Database
             };
             _patients.Add(patient2);
 
-            var patient3 = new PatientDetails()
+            var patient3 = new PatientDetails
             {
                 PatientId = "PID003",
                 PatientName = "Vikash",
@@ -77,7 +78,7 @@ namespace AlertToCareAPI.Database
                 BedId = "BID3",
                 IcuId = "ICU01",
                 Email = "Vikash_singh@gmail.com",
-                Address = new PatientAddress()
+                Address = new PatientAddress
                 {
                     HouseNo = "15",
                     Street = "Mico",
@@ -85,7 +86,7 @@ namespace AlertToCareAPI.Database
                     State = "Bihar",
                     Pincode = "821115"
                 },
-                Vitals = new VitalsCategory()
+                Vitals = new VitalsCategory
                 {
                     PatientId = "PID003",
                     Spo2 = 122,
@@ -95,49 +96,49 @@ namespace AlertToCareAPI.Database
             };
             _patients.Add(patient3);
 
-            _beds1.Add(new BedDetails()
+            _beds1.Add(new BedDetails
             {
                 BedId = "BID1",
                 Status = true,
                 IcuId = "ICU01"
             });
-            _beds1.Add(new BedDetails()
+            _beds1.Add(new BedDetails
             {
                 BedId = "BID2",
                 Status = true,
                 IcuId = "ICU01"
             });
-            _beds1.Add(new BedDetails()
+            _beds1.Add(new BedDetails
             {
                 BedId = "BID3",
                 Status = true,
                 IcuId = "ICU01"
             });
-            _beds1.Add(new BedDetails()
+            _beds1.Add(new BedDetails
             {
                 BedId = "BID4",
                 Status = false,
                 IcuId = "ICU01"
             });
-            _beds1.Add(new BedDetails()
+            _beds1.Add(new BedDetails
             {
                 BedId = "BID5",
                 Status = false,
                 IcuId = "ICU01"
             });
-            _beds1.Add(new BedDetails()
+            _beds1.Add(new BedDetails
             {
                 BedId = "BID6",
                 Status = false,
                 IcuId = "ICU01"
             });
-            _beds1.Add(new BedDetails()
+            _beds1.Add(new BedDetails
             {
                 BedId = "BID7",
                 Status = false,
                 IcuId = "ICU01"
             });
-            var icu = new ICUBedDetails()
+            var icu = new ICUBedDetails
             {
                 IcuId = "ICU01",
                 LayoutId = "LID02",
@@ -147,26 +148,26 @@ namespace AlertToCareAPI.Database
 
             _icuList.Add(icu);
 
-            _beds2.Add(new BedDetails()
+            _beds2.Add(new BedDetails
             {
                 BedId = "BID50",
                 Status = false,
                 IcuId = "ICU03"
             });
-            _beds2.Add(new BedDetails()
+            _beds2.Add(new BedDetails
             {
                 BedId = "BID51",
                 Status = false,
                 IcuId = "ICU03"
             });
-            _beds2.Add(new BedDetails()
+            _beds2.Add(new BedDetails
             {
                 BedId = "BID52",
                 Status = false,
                 IcuId = "ICU03"
             });
 
-            _icuList.Add(new ICUBedDetails()
+            _icuList.Add(new ICUBedDetails
             {
                 IcuId =  "ICU03",
                 LayoutId = "LID03",
@@ -235,26 +236,13 @@ namespace AlertToCareAPI.Database
         public List<VitalsCategory> ReadVitalsDatabase()
         {
             var patients = ReadPatientDatabase();
-            var vitals = new List<VitalsCategory>();
-            foreach(var patient in patients)
-            {
-                vitals.Add(patient.Vitals);
-            }
-            return vitals;
+            return patients.Select(patient => patient.Vitals).ToList();
         }
 
         public List<BedDetails> ReadBedsDatabase()
         {
             var icuList = ReadIcuDatabase();
-            var beds = new List<BedDetails>();
-            foreach (var icu in icuList)
-            {
-                foreach (var bed in icu.Beds)
-                {
-                    beds.Add(bed);
-                }
-            }
-            return beds;
+            return icuList.SelectMany(icu => icu.Beds).ToList();
         }
     }
 }
