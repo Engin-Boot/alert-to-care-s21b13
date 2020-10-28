@@ -23,9 +23,7 @@ namespace AlertToCareAPIUI
 
         public List<BedDetails> FindBeds(string responseBody)
         {
-            
             var myIcuBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
-
 
             var myBedDetails = myIcuBedDetailsList.Beds;
 
@@ -57,7 +55,7 @@ namespace AlertToCareAPIUI
             var left = 20;
             var tbTop = 100;
 
-            for (var i = 0; i < bedValue/2; i++)
+            for (var i = 0; i < bedValue/2; i++)       
             {
                 var rec = new Rectangle
                 {
@@ -119,7 +117,7 @@ namespace AlertToCareAPIUI
                 Canvas.SetLeft(rec, left);
                 left += 100;
             }
-           
+                                                                                            
 
         }
 
@@ -133,7 +131,7 @@ namespace AlertToCareAPIUI
         {
             var client = new HttpClient();
             var response = await client.GetAsync("http://localhost:5000/api/PatientMonitoring");
-            //response.EnsureSuccessStatusCode();
+            
             var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             
             MessageBox.Show(responseBody);

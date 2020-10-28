@@ -1,11 +1,12 @@
-﻿<Window x:Class="AlertToCareAPIUI.LShapedLayout"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AlertToCareAPIUI"
-        mc:Ignorable="d"
-        Title="LShapedLayout" Height="450" Width="800">
+﻿<!-- ReSharper disable all -->
+    <Window x:Class="AlertToCareAPIUI.LShapedLayout"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:AlertToCareAPIUI"
+            mc:Ignorable="d"
+            Title="LShapedLayout" Height="450" Width="800">
     <DockPanel LastChildFill="True">
         <Border x:Name ="PatientButtons" BorderThickness="2" BorderBrush="Beige" Height="450" DockPanel.Dock="Left" Background="Beige" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200">
             <StackPanel>
@@ -21,3 +22,4 @@
         </Grid>
     </DockPanel>
 </Window>
+<!-- ReSharper restore all -->

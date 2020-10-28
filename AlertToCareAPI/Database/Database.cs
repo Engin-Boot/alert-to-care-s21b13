@@ -210,7 +210,7 @@ namespace AlertToCareAPI.Database
             while (reader.EndOfStream != true)
             {
                 var line = reader.ReadLine();
-                var icu = JsonConvert.DeserializeObject<ICUBedDetails>(line);
+                var icu = JsonConvert.DeserializeObject<ICUBedDetails>(line ?? string.Empty);
                 icuList.Add(icu);
             }
 
@@ -225,7 +225,7 @@ namespace AlertToCareAPI.Database
             while (reader.EndOfStream != true)
             {
                 var line = reader.ReadLine();
-                var patient = JsonConvert.DeserializeObject<PatientDetails>(line);
+                var patient = JsonConvert.DeserializeObject<PatientDetails>(line ?? string.Empty);
                 patients.Add(patient);
             }
             
