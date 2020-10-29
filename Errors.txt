@@ -1,0 +1,16 @@
+Error logs:
+
+1. Unable to run the server-
+ a) Check if the server is already running.
+ b) Check if all the dll's and other relevent files are present in the same folder.
+
+2. UI is unable to get data from API-
+ a) Check to see if the server is running
+ b) Verify that localhost:5000/{controller} is able to recieve and post data.If not then run server with admin privilages.
+
+3. UI not opening-
+ a) Build the solution again using Visual Studio.
+ b) open the UI from AlertToCareAPIUI\bin\Debug\netcoreapp3.1 folder.
+
+
+
