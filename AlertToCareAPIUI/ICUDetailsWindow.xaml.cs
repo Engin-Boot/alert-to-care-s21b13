@@ -5,18 +5,18 @@ using System.Net.Http;
 using AlertToCareAPI.Models;
 using Newtonsoft.Json;
 
-namespace AlertToCareAPIUI
+namespace AlertToCareAPIUI                     //ReSharper disable all
 {
     /// <summary>
     /// Interaction logic for ICUDetailsWindow.xaml
-    /// </summary>
+    /// </summary>                                      
     public partial class ICUDetailsWindow
     {
         private static readonly HttpClient Client = new HttpClient();
         public ICUDetailsWindow()
         {
             InitializeComponent();
-        }
+        }                                       //ReSharper restore all
         private async System.Threading.Tasks.Task AddIcuDetails_ClickAsync()
         {
             var newBedDetails = new BedDetails

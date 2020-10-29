@@ -37,7 +37,7 @@ namespace AlertToCareAPIUI
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            var newWind = new ICURemove();
+            var newWind = new IcuRemove();
             newWind.Show();
         }
 

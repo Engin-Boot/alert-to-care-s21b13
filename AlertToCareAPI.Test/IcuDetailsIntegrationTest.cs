@@ -18,8 +18,40 @@ namespace AlertToCareAPI.Test
         {
             _sut = new TestServer();
         }
-        
 
+        private static ICUBedDetails PatientInfo(string icuId)
+        {
+            return new ICUBedDetails
+            {
+                BedsCount = 3,
+                Beds = new List<BedDetails>
+                {
+                    new BedDetails
+                    {
+                        BedId = "BID50",
+                        IcuId = icuId,
+                        Status = false
+                    },
+                    new BedDetails
+                    {
+                        BedId = "BID51",
+                        IcuId = icuId,
+                        Status = false
+                    },
+                    new BedDetails
+                    {
+                        BedId = "BID52",
+                        IcuId = icuId,
+                        Status = false
+                    }
+                },
+                IcuId = icuId,
+                LayoutId = "LID04"
+
+            };
+        }
+
+        
         [Fact]
         public async Task GetIcuWardsById()
         {
@@ -32,36 +64,9 @@ namespace AlertToCareAPI.Test
         [Fact]
         public async Task AddIcuSuccessfully()
         {
-            var newIcu = new ICUBedDetails
-            {
-                BedsCount = 3,
-                Beds = new List<BedDetails>
-                {
-                    new BedDetails
-                    {
-                        BedId = "BID50",
-                        IcuId = "ICU04",
-                        Status = false
-                    },
-                    new BedDetails
-                    {
-                        BedId = "BID51",
-                        IcuId = "ICU04",
-                        Status = false
-                    },
-                    new BedDetails
-                    {
-                        BedId = "BID52",
-                        IcuId = "ICU04",
-                        Status = false
-                    }
-                },
-                IcuId = "ICU04",
-                LayoutId = "LID04"
-
-            };
+            
             var response = await _sut.Client.PostAsync(Url + "/IcuWards",
-                new StringContent(JsonConvert.SerializeObject(newIcu), Encoding.UTF8, "application/json"));
+                new StringContent(JsonConvert.SerializeObject(PatientInfo("ICU04")), Encoding.UTF8, "application/json"));
             Assert.True(response.StatusCode==HttpStatusCode.OK);
         }
 
@@ -110,72 +115,18 @@ namespace AlertToCareAPI.Test
         [Fact]
         public async Task UpdateIcuSuccessfully()
         {
-            var newIcu = new ICUBedDetails
-            {
-                BedsCount = 3,
-                Beds = new List<BedDetails>
-                {
-                    new BedDetails
-                    {
-                        BedId = "BID50",
-                        IcuId = "ICU03",
-                        Status = false
-                    },
-                    new BedDetails
-                    {
-                        BedId = "BID51",
-                        IcuId = "ICU03",
-                        Status = false
-                    },
-                    new BedDetails
-                    {
-                        BedId = "BID52",
-                        IcuId = "ICU03",
-                        Status = false
-                    }
-                },
-                IcuId = "ICU03",
-                LayoutId = "LID04"
-
-            };
+            
             var response = await _sut.Client.PutAsync(Url + "/IcuWards/ICU03",
-                new StringContent(JsonConvert.SerializeObject(newIcu), Encoding.UTF8, "application/json"));
+                new StringContent(JsonConvert.SerializeObject(PatientInfo("ICU03")), Encoding.UTF8, "application/json"));
             Assert.True(response.StatusCode == HttpStatusCode.OK);
         }
 
         [Fact]
         public async Task UpdateIcuNotSuccessfully()
         {
-            var newIcu = new ICUBedDetails
-            {
-                BedsCount = 3,
-                Beds = new List<BedDetails>
-                {
-                    new BedDetails
-                    {
-                        BedId = "BID50",
-                        IcuId = "ICU03",
-                        Status = false
-                    },
-                    new BedDetails
-                    {
-                        BedId = "BID51",
-                        IcuId = "ICU03",
-                        Status = false
-                    },
-                    new BedDetails
-                    {
-                        BedId = "BID52",
-                        IcuId = "ICU03",
-                        Status = false
-                    }
-                },
-                IcuId = "ICU03",
-                LayoutId = "LID04"
-
-            };
+            
             var response = await _sut.Client.PutAsync(Url + "/IcuWards/ICU05",
-                new StringContent(JsonConvert.SerializeObject(newIcu), Encoding.UTF8, "application/json"));
+                new StringContent(JsonConvert.SerializeObject(PatientInfo("ICU03")), Encoding.UTF8, "application/json"));
             Assert.True(response.StatusCode == HttpStatusCode.BadRequest);
         }
 

@@ -23,26 +23,15 @@ namespace AlertToCareAPIUI
         public List<BedDetails> FindBeds(string responseBody)
         {
 
-            var myIcuBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
-
-
-            var myBedDetails = myIcuBedDetailsList.Beds;
-
-            return myBedDetails.ToList();
+            return JsonConvert.DeserializeObject<ICUBedDetails>(responseBody).Beds.ToList();
         }
 
         public async System.Threading.Tasks.Task GetBeds_ClickAsync(object sender, RoutedEventArgs e)
         {
             var client = new HttpClient();
             var response = await client.GetAsync("http://localhost:5000/api/IcuDetails/IcuWards/ICU01");
-            //response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            var myIcuBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
-
-            var bedValue = myIcuBedDetailsList.BedsCount;
-
-            MakeRectangle(bedValue, responseBody);
+            MakeRectangle(JsonConvert.DeserializeObject<ICUBedDetails>(responseBody).BedsCount,responseBody);
 
         }
 
@@ -120,6 +109,47 @@ namespace AlertToCareAPIUI
                 tbTop += 60;
             }
 
+            //for (var i = 0; i < bedValue; i++)
+            //{
+            //    if (i == bedValue / 2)
+            //    {
+            //        top += 100;
+            //        tbTop += 90;
+            //        left = 20;
+            //    }
+
+
+            //    var rec = new Rectangle
+            //    {
+            //        Width = width,
+            //        Height = height,
+            //        Fill = Brushes.AliceBlue,
+            //        Stroke = Brushes.LightPink,
+            //        StrokeThickness = 2
+
+            //    };
+
+            //    var tb = new TextBlock
+            //    {
+            //        Width = 75,
+            //        Height = 80,
+            //        Text = myBeds[i].Status.ToString() + " " + myBeds[i].BedId
+
+            //    };
+
+            //    // Add to a canvas for example
+            //    canvas.Children.Add(rec);
+            //    canvas.Children.Add(tb);
+            //    Canvas.SetTop(tb, tbTop);
+            //    Canvas.SetLeft(tb, left);
+            //    Canvas.SetTop(rec, top);
+            //    Canvas.SetLeft(rec, left);
+            //    //left += 100;
+            //    if (i < bedValue / 2) {left+=70;continue;}
+            //    top += 60;
+            //    tbTop += 60;
+            //}
+
 
         }
 
@@ -133,7 +163,7 @@ namespace AlertToCareAPIUI
         {
             var client = new HttpClient();
             var response = await client.GetAsync("http://localhost:5000/api/PatientMonitoring");
-            //response.EnsureSuccessStatusCode();
+            
             var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             MessageBox.Show(responseBody);

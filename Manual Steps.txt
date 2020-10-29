@@ -1,0 +1,14 @@
+1. Run the "AlertToCareAPIUI.exe" from this location:
+   C:\Users\320088274\source\repos\alert-to-care-s21b13\AlertToCareAPIUI\bin\Debug\netcoreapp3.1 
+   or from *\repos\alert-to-care-s21b13\AlertToCareAPIUI\bin\Debug\netcoreapp3.1 
+   The backend server is automatically configured to execute after running this file.
+
+2. Add an ICU by clicking on the "Add ICU details" button. Fill the neccessary details in the newly opened window and click on submit button to proceed.
+   Close the ICU details window.
+
+3. Choose a layout from the given two options:
+  a) Parallel Layout- the beds of ICU are arranged in horizontal parallel rows
+  b) L Shaped Layout- the beds are arranged in a L shaped format.
+
+4. Add the patients and perform related tasks in the newly opened layout window. 
+ 

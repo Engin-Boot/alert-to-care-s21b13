@@ -23,24 +23,16 @@ namespace AlertToCareAPIUI
 
         public List<BedDetails> FindBeds(string responseBody)
         {
-            var myIcuBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
-
-            var myBedDetails = myIcuBedDetailsList.Beds;
-
-            return myBedDetails.ToList();
+            return JsonConvert.DeserializeObject<ICUBedDetails>(responseBody).Beds.ToList();
         }
 
         public async System.Threading.Tasks.Task GetBeds_ClickAsync(object sender, RoutedEventArgs e)
         {
             var client = new HttpClient();
             var response = await client.GetAsync("http://localhost:5000/api/IcuDetails/IcuWards/ICU01");
-            //response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
             var myIcuBedDetailsList = JsonConvert.DeserializeObject<ICUBedDetails>(responseBody);
-
             var bedValue = myIcuBedDetailsList.BedsCount;
-
             MakeRectangle(bedValue,responseBody);
 
         }
@@ -55,8 +47,77 @@ namespace AlertToCareAPIUI
             var left = 20;
             var tbTop = 100;
 
-            for (var i = 0; i < bedValue/2; i++)       
+            //for (var i = 0; i < bedValue/2; i++)       
+            //{
+            //    var rec = new Rectangle
+            //    {
+            //        Width = width,
+            //        Height = height,
+            //        Fill = Brushes.AliceBlue,
+            //        Stroke = Brushes.LightPink,
+            //        StrokeThickness = 2
+
+            //    };
+
+            //    var tb = new TextBlock
+            //    {
+            //        Width = 75,
+            //        Height = 80,
+            //        Text = myBeds[i].Status.ToString() +" "+ myBeds[i].BedId
+
+            //    };
+
+            //    // Add to a canvas for example
+            //    canvas.Children.Add(rec);
+            //    canvas.Children.Add(tb);
+            //    Canvas.SetTop(tb, tbTop);
+            //    Canvas.SetLeft(tb, left);
+            //    Canvas.SetTop(rec, top);
+            //    Canvas.SetLeft(rec, left);
+            //    left += 100;
+            //}
+            //top += 150;
+            //tbTop += 150;
+            //left = 20;
+
+            //for (var i = bedValue/2; i < bedValue; i++)
+            //{
+            //    // Create the rectangle
+            //    var rec = new Rectangle
+            //    {
+            //        Width = width,
+            //        Height = height,
+            //        Fill = Brushes.AliceBlue,
+            //        Stroke = Brushes.LightPink,
+            //        StrokeThickness = 2
+            //    };
+
+            //    var tb = new TextBlock
+            //    {
+            //        Width = 75,
+            //        Height = 80,
+            //        Text = myBeds[i].Status.ToString() + " " + myBeds[i].BedId
+
+            //    };
+
+            //    // Add to a canvas for example
+            //    canvas.Children.Add(rec);
+            //    canvas.Children.Add(tb);
+            //    Canvas.SetTop(tb, tbTop);
+            //    Canvas.SetLeft(tb, left);
+            //    Canvas.SetTop(rec, top);
+            //    Canvas.SetLeft(rec, left);
+            //    left += 100;
+            //}
+
+            for (var i = 0; i < bedValue ; i++)
             {
+                if (i == bedValue / 2)
+                {
+                    top += 150;
+                    tbTop += 150;
+                    left = 20;
+                }
                 var rec = new Rectangle
                 {
                     Width = width,
@@ -64,40 +125,7 @@ namespace AlertToCareAPIUI
                     Fill = Brushes.AliceBlue,
                     Stroke = Brushes.LightPink,
                     StrokeThickness = 2
-                    
-                };
 
-                var tb = new TextBlock
-                {
-                    Width = 75,
-                    Height = 80,
-                    Text = myBeds[i].Status.ToString() +" "+ myBeds[i].BedId
-                    
-                };
-
-                // Add to a canvas for example
-                canvas.Children.Add(rec);
-                canvas.Children.Add(tb);
-                Canvas.SetTop(tb, tbTop);
-                Canvas.SetLeft(tb, left);
-                Canvas.SetTop(rec, top);
-                Canvas.SetLeft(rec, left);
-                left += 100;
-            }
-            top += 150;
-            tbTop += 150;
-            left = 20;
-
-            for (var i = bedValue/2; i < bedValue; i++)
-            {
-                // Create the rectangle
-                var rec = new Rectangle
-                {
-                    Width = width,
-                    Height = height,
-                    Fill = Brushes.AliceBlue,
-                    Stroke = Brushes.LightPink,
-                    StrokeThickness = 2
                 };
 
                 var tb = new TextBlock
@@ -117,7 +145,10 @@ namespace AlertToCareAPIUI
                 Canvas.SetLeft(rec, left);
                 left += 100;
             }
-                                                                                            
+            
+
+            
+
 
         }
 
@@ -129,17 +160,13 @@ namespace AlertToCareAPIUI
 
         public async System.Threading.Tasks.Task GetAlert_ClickAsync(object sender, RoutedEventArgs e)
         {
-            var client = new HttpClient();
-            var response = await client.GetAsync("http://localhost:5000/api/PatientMonitoring");
-            
-            var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            
-            MessageBox.Show(responseBody);
+            var response = await new HttpClient().GetAsync("http://localhost:5000/api/PatientMonitoring");
+            MessageBox.Show(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
         }
 
         private void GetAlert_Click(object sender, RoutedEventArgs e)
         {
-            _ = GetAlert_ClickAsync(sender, e);
+             _ = GetAlert_ClickAsync(sender, e);
         }
         private void UndoAlert_Click(object sender, RoutedEventArgs e)
         {

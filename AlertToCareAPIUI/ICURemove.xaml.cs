@@ -6,9 +6,9 @@ namespace AlertToCareAPIUI
     /// <summary>
     /// Interaction logic for ICURemove.xaml
     /// </summary>
-    public partial class ICURemove
+    public partial class IcuRemove
     {
-        public ICURemove()
+        public IcuRemove()
         {
             InitializeComponent();
         }
