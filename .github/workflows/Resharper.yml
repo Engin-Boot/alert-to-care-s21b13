@@ -23,6 +23,12 @@ jobs:
         run: dotnet add AlertToCareAPI.Test/AlertToCareAPI.Test.csproj package xunit --version 2.4.0
         
       - name: Add Package
+        run: dotnet add AlertToCareAPI/AlertToCareAPI.csproj package Newtonsoft.Json --version 12.0.3
+        
+      - name: Add Package
+        run: dotnet add AlertToCareAPIUI/AlertToCareAPIUI.csproj package Newtonsoft.Json --version 12.0.3
+        
+      - name: Add Package
         run: dotnet add AlertToCareAPI.Test/AlertToCareAPI.Test.csproj package FluentAssertions --version 5.10.3
         
         
