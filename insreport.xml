@@ -7,37 +7,6 @@
       <Element>Solution</Element>
     </InspectionScope>
   </Information>
-  <IssueTypes>
-    <IssueType Id="ClassNeverInstantiated.Global" Category="Potential Code Quality Issues" CategoryId="CodeSmell" SubCategory="Class is never instantiated" Description="Class is never instantiated: Non-private accessibility" Severity="SUGGESTION" Global="True" WikiUrl="https://www.jetbrains.com/resharperplatform/help?Keyword=ClassNeverInstantiated.Global" />
-    <IssueType Id="MemberCanBePrivate.Global" Category="Common Practices and Code Improvements" CategoryId="BestPractice" SubCategory="Member can be made private" Description="Member can be made private: Non-private accessibility" Severity="SUGGESTION" Global="True" WikiUrl="https://www.jetbrains.com/resharperplatform/help?Keyword=MemberCanBePrivate.Global" />
-    <IssueType Id="ParameterOnlyUsedForPreconditionCheck.Global" Category="Redundancies in Symbol Declarations" CategoryId="DeclarationRedundancy" SubCategory="Parameter is only used for precondition check" Description="Parameter is only used for precondition check: Non-private accessibility" Severity="SUGGESTION" Global="True" />
-    <IssueType Id="UnusedParameter.Global" Category="Redundancies in Symbol Declarations" CategoryId="DeclarationRedundancy" SubCategory="Unused parameter" Description="Unused parameter: Non-private accessibility" Severity="SUGGESTION" Global="True" />
-  </IssueTypes>
-  <Issues>
-    <Project Name="AlertToCareAPI">
-      <Issue TypeId="ClassNeverInstantiated.Global" File="AlertToCareAPI\Program.cs" Offset="193-200" Line="8" Message="Class 'Program' is never instantiated" />
-      <Issue TypeId="ParameterOnlyUsedForPreconditionCheck.Global" File="AlertToCareAPI\Repositories\Field Validators\IcuFieldsValidator.cs" Offset="651-656" Line="20" Message="Parameter 'icuId' is only used for precondition check(s)" />
-      <Issue TypeId="ParameterOnlyUsedForPreconditionCheck.Global" File="AlertToCareAPI\Repositories\Field Validators\IcuFieldsValidator.cs" Offset="703-711" Line="20" Message="Parameter 'icuStore' is only used for precondition check(s)" />
-      <Issue TypeId="ParameterOnlyUsedForPreconditionCheck.Global" File="AlertToCareAPI\Repositories\Field Validators\PatientFieldsValidator.cs" Offset="1373-1382" Line="29" Message="Parameter 'patientId' is only used for precondition check(s)" />
-      <Issue TypeId="ParameterOnlyUsedForPreconditionCheck.Global" File="AlertToCareAPI\Repositories\Field Validators\PatientFieldsValidator.cs" Offset="1435-1443" Line="29" Message="Parameter 'patients' is only used for precondition check(s)" />
-    </Project>
-    <Project Name="AlertToCareAPIUI">
-      <Issue TypeId="MemberCanBePrivate.Global" File="AlertToCareAPIUI\LShapedLayout.xaml.cs" Offset="516-522" Line="23" Message="Method 'FindBeds' can be made private" />
-      <Issue TypeId="MemberCanBePrivate.Global" File="AlertToCareAPIUI\LShapedLayout.xaml.cs" Offset="699-705" Line="29" Message="Method 'GetBeds_ClickAsync' can be made private" />
-      <Issue TypeId="UnusedParameter.Global" File="AlertToCareAPIUI\LShapedLayout.xaml.cs" Offset="766-772" Line="29" Message="Parameter 'sender' is never used" />
-      <Issue TypeId="UnusedParameter.Global" File="AlertToCareAPIUI\LShapedLayout.xaml.cs" Offset="790-791" Line="29" Message="Parameter 'e' is never used" />
-      <Issue TypeId="MemberCanBePrivate.Global" File="AlertToCareAPIUI\LShapedLayout.xaml.cs" Offset="1187-1193" Line="38" Message="Method 'MakeRectangle' can be made private" />
-      <Issue TypeId="MemberCanBePrivate.Global" File="AlertToCareAPIUI\LShapedLayout.xaml.cs" Offset="4959-4965" Line="162" Message="Method 'GetAlert_ClickAsync' can be made private" />
-      <Issue TypeId="UnusedParameter.Global" File="AlertToCareAPIUI\LShapedLayout.xaml.cs" Offset="5027-5033" Line="162" Message="Parameter 'sender' is never used" />
-      <Issue TypeId="UnusedParameter.Global" File="AlertToCareAPIUI\LShapedLayout.xaml.cs" Offset="5051-5052" Line="162" Message="Parameter 'e' is never used" />
-      <Issue TypeId="MemberCanBePrivate.Global" File="AlertToCareAPIUI\ParallelLayout.xaml.cs" Offset="528-534" Line="24" Message="Method 'FindBeds' can be made private" />
-      <Issue TypeId="MemberCanBePrivate.Global" File="AlertToCareAPIUI\ParallelLayout.xaml.cs" Offset="709-715" Line="29" Message="Method 'GetBeds_ClickAsync' can be made private" />
-      <Issue TypeId="UnusedParameter.Global" File="AlertToCareAPIUI\ParallelLayout.xaml.cs" Offset="776-782" Line="29" Message="Parameter 'sender' is never used" />
-      <Issue TypeId="UnusedParameter.Global" File="AlertToCareAPIUI\ParallelLayout.xaml.cs" Offset="800-801" Line="29" Message="Parameter 'e' is never used" />
-      <Issue TypeId="MemberCanBePrivate.Global" File="AlertToCareAPIUI\ParallelLayout.xaml.cs" Offset="1295-1301" Line="40" Message="Method 'MakeRectangle' can be made private" />
-      <Issue TypeId="MemberCanBePrivate.Global" File="AlertToCareAPIUI\ParallelLayout.xaml.cs" Offset="5022-5028" Line="161" Message="Method 'GetAlert_ClickAsync' can be made private" />
-      <Issue TypeId="UnusedParameter.Global" File="AlertToCareAPIUI\ParallelLayout.xaml.cs" Offset="5090-5096" Line="161" Message="Parameter 'sender' is never used" />
-      <Issue TypeId="UnusedParameter.Global" File="AlertToCareAPIUI\ParallelLayout.xaml.cs" Offset="5114-5115" Line="161" Message="Parameter 'e' is never used" />
-    </Project>
-  </Issues>
+  <IssueTypes />
+  <Issues />
 </Report>

@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace AlertToCareAPIUI
+namespace AlertToCareAPIUI              //ReSharper disable all
 {
     /// <summary>
     /// Interaction logic for LShapedLayout.xaml
@@ -20,13 +20,13 @@ namespace AlertToCareAPIUI
             InitializeComponent();
         }
 
-        public List<BedDetails> FindBeds(string responseBody)
+        private List<BedDetails> FindBeds(string responseBody)
         {
 
             return JsonConvert.DeserializeObject<ICUBedDetails>(responseBody).Beds.ToList();
         }
 
-        public async System.Threading.Tasks.Task GetBeds_ClickAsync(object sender, RoutedEventArgs e)
+        private async System.Threading.Tasks.Task GetBeds_ClickAsync(object sender, RoutedEventArgs e)
         {
             var client = new HttpClient();
             var response = await client.GetAsync("http://localhost:5000/api/IcuDetails/IcuWards/ICU01");
@@ -35,7 +35,7 @@ namespace AlertToCareAPIUI
 
         }
 
-        public void MakeRectangle(int bedValue, string responseBody)
+        private void MakeRectangle(int bedValue, string responseBody)
         {
             var myBeds = FindBeds(responseBody);
 
@@ -159,7 +159,7 @@ namespace AlertToCareAPIUI
 
         }
 
-        public async System.Threading.Tasks.Task GetAlert_ClickAsync(object sender, RoutedEventArgs e)
+        private async System.Threading.Tasks.Task GetAlert_ClickAsync(object sender, RoutedEventArgs e)
         {
             var client = new HttpClient();
             var response = await client.GetAsync("http://localhost:5000/api/PatientMonitoring");
@@ -190,4 +190,4 @@ namespace AlertToCareAPIUI
             newWind.Show();
         }
     }
-}
+}               //ReSharper restore all

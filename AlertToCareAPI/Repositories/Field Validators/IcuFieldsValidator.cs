@@ -15,7 +15,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
             _validator.IsWhitespaceOrEmptyOrNull(icu.LayoutId);
             
             
-        }
+        }           //ReSharper disable all
 
         public void ValidateNewIcuId(string icuId, ICUBedDetails icuRecord, List<ICUBedDetails> icuStore)
         {
@@ -25,7 +25,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
             }
 
             ValidateIcuRecord(icuRecord);
-        }
+        }       //ReSharper restore all
 
     }
 }

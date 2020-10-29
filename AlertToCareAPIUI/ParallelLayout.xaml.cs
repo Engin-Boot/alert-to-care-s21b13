@@ -8,7 +8,7 @@ using System.Windows.Shapes;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace AlertToCareAPIUI
+namespace AlertToCareAPIUI              //ReSharper disable all
 {
     /// <summary>
     /// Interaction logic for ParallelLayout.xaml
@@ -185,4 +185,4 @@ namespace AlertToCareAPIUI
             newWind.Show();
         }
     }
-}
+}       //ReSharper restore all

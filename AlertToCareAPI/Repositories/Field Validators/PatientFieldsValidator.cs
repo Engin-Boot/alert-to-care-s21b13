@@ -24,7 +24,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
            _addressValidator.ValidateAddressFields(patient.Address);
            CheckConsistencyInIcuIdFields(patient.IcuId, patient.BedId);
 
-        }
+        }       //ReSharper disable all
 
         public void ValidateNewPatientId(string patientId, PatientDetails patientRecord, List<PatientDetails> patients)
         {
@@ -35,7 +35,7 @@ namespace AlertToCareAPI.Repositories.Field_Validators
             }
 
             ValidatePatientRecord(patientRecord);
-        }
+        }       //ReSharper restore all
 
         private static void CheckConsistencyInPatientIdFields(PatientDetails patient)
         {
